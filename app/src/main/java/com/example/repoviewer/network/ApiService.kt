@@ -3,7 +3,6 @@ package com.example.repoviewer.network
 import com.example.repoviewer.model.DetailsResponse
 import com.example.repoviewer.model.IssuesResponse
 import com.example.repoviewer.model.RepositoriesResponse
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
