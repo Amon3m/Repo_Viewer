@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/repoFragment"
-        android:name="com.example.repoviewer.RepoFragment"
+        android:name="com.example.repoviewer.repo.view.RepoFragment"
         android:label="fragment_repo"
         tools:layout="@layout/fragment_repo" />
     <fragment
         android:id="@+id/issuesFragment"
-        android:name="com.example.repoviewer.IssuesFragment"
+        android:name="com.example.repoviewer.issues.view.IssuesFragment"
         android:label="fragment_issues"
         tools:layout="@layout/fragment_issues" />
     <fragment
         android:id="@+id/repoDetailsFragment"
-        android:name="com.example.repoviewer.RepoDetailsFragment"
+        android:name="com.example.repoviewer.repodetails.view.RepoDetailsFragment"
         android:label="fragment_repo_details"
         tools:layout="@layout/fragment_repo_details" />
 </navigation>
