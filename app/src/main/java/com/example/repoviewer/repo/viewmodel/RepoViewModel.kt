@@ -2,7 +2,7 @@ package com.example.repoviewer.repo.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.repoviewer.model.RepositoryInterface
+import com.example.repoviewer.model.repositry.RepositoryInterface
 import com.example.repoviewer.network.ApiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

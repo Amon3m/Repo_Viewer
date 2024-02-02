@@ -1,6 +1,9 @@
-package com.example.repoviewer.model
+package com.example.repoviewer.model.repositry
 
 import android.content.Context
+import com.example.repoviewer.model.DetailsResponse
+import com.example.repoviewer.model.IssuesResponse
+import com.example.repoviewer.model.RepositoriesResponse
 import com.example.repoviewer.network.RemoteSource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -10,7 +13,7 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val remoteSource: RemoteSource,
     @ApplicationContext val context: Context
- ) :RepositoryInterface {
+ ) : RepositoryInterface {
 
     override suspend fun getRepositories(): Flow<List<RepositoriesResponse>> {
         return flowOf(remoteSource.getRepositories())

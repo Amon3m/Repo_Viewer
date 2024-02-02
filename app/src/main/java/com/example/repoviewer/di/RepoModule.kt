@@ -1,7 +1,7 @@
 package com.example.repoviewer.di
 
-import com.example.repoviewer.model.Repository
-import com.example.repoviewer.model.RepositoryInterface
+import com.example.repoviewer.model.repositry.Repository
+import com.example.repoviewer.model.repositry.RepositoryInterface
 import com.example.repoviewer.network.ApiClient
 import com.example.repoviewer.network.RemoteSource
 import dagger.Binds

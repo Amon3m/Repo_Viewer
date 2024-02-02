@@ -1,6 +1,8 @@
-package com.example.repoviewer.model
+package com.example.repoviewer.model.repositry
 
-import com.example.repoviewer.network.RemoteSource
+import com.example.repoviewer.model.DetailsResponse
+import com.example.repoviewer.model.IssuesResponse
+import com.example.repoviewer.model.RepositoriesResponse
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryInterface  {

@@ -21,11 +21,10 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class RepoFragment : Fragment() ,OnRepoClickListener{
+class RepoFragment : Fragment(), OnRepoClickListener {
     private val viewModel by viewModels<RepoViewModel>()
     private lateinit var binding: FragmentRepoBinding
     lateinit var repoAdapter: RepoAdapter
-
 
 
     override fun onCreateView(
@@ -35,6 +34,7 @@ class RepoFragment : Fragment() ,OnRepoClickListener{
         binding = FragmentRepoBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -72,12 +72,11 @@ class RepoFragment : Fragment() ,OnRepoClickListener{
 
     override fun onRepoClick(repositoriesResponse: RepositoriesResponse?) {
 
-     }
+    }
 
     override fun onShowStars(repositoriesResponse: RepositoriesResponse?, position: Int) {
 
     }
-
 
 
 }
