@@ -1,11 +1,9 @@
 package com.example.repoviewer.model
 
+
+
+
 data class RepositoriesResponse(
-	val repositoriesResponse: List<RepositoriesResponseItem?>? = null
-)
-
-
-data class RepositoriesResponseItem(
 	val tagsUrl: String? = null,
 	val jsonMemberPrivate: Boolean? = null,
 	val contributorsUrl: String? = null,

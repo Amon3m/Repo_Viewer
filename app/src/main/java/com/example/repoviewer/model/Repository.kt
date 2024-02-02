@@ -10,9 +10,9 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val remoteSource: RemoteSource,
     @ApplicationContext val context: Context
-) :RepositoryInterface {
+ ) :RepositoryInterface {
 
-    override suspend fun getRepositories(): Flow<RepositoriesResponse> {
+    override suspend fun getRepositories(): Flow<List<RepositoriesResponse>> {
         return flowOf(remoteSource.getRepositories())
     }
 
@@ -20,7 +20,7 @@ class Repository @Inject constructor(
         return flowOf(remoteSource.getRepoDetails(owner, repo))
     }
 
-    override suspend fun getRepoIssues(owner: String, repo: String): Flow<IssuesResponse> {
+    override suspend fun getRepoIssues(owner: String, repo: String): Flow<List<IssuesResponse>> {
         return flowOf(remoteSource.getRepoIssues(owner, repo))
     }
 }

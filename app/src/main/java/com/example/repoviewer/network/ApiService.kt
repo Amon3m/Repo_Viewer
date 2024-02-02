@@ -9,7 +9,7 @@ import retrofit2.http.Path
 interface ApiService {
 
     @GET("repositories")
-    suspend fun getRepositories(): RepositoriesResponse
+    suspend fun getRepositories(): List<RepositoriesResponse>
 
     @GET("/repos/{owner}/{repo}")
     suspend fun getRepoDetails(
@@ -21,5 +21,5 @@ interface ApiService {
     suspend fun getRepoIssues(
         @Path("owner") owner: String,
         @Path("repo") repo: String
-    ): IssuesResponse
+    ): List<IssuesResponse>
 }

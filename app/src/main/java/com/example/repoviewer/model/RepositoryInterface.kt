@@ -4,10 +4,10 @@ import com.example.repoviewer.network.RemoteSource
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryInterface  {
-     suspend fun getRepositories(): Flow<RepositoriesResponse>
+     suspend fun getRepositories(): Flow<List<RepositoriesResponse>>
 
      suspend fun getRepoDetails(owner: String, repo: String): Flow<DetailsResponse>
 
-     suspend fun getRepoIssues(owner: String, repo: String): Flow<IssuesResponse>
+     suspend fun getRepoIssues(owner: String, repo: String): Flow<List<IssuesResponse>>
 
 }
