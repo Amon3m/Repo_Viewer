@@ -11,9 +11,9 @@ interface RepoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(repos: List<RepositoryEntity>)
 
-    @Query("SELECT * FROM Repositories")
+    @Query("SELECT * FROM repositories_table")
     fun getAllRepos(): Flow<List<RepositoryEntity>>
 
-    @Query("UPDATE Repositories SET starCount = :newStarCount WHERE id = :repoId")
+    @Query("UPDATE repositories_table SET starCount = :newStarCount WHERE id = :repoId")
     suspend fun updateStarCount(repoId: Int, newStarCount: Int)
 }

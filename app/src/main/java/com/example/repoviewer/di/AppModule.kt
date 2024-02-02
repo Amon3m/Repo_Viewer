@@ -1,5 +1,11 @@
 package com.example.repoviewer.di
 
+import android.app.Application
+import androidx.room.Room
+import com.example.repoviewer.database.ConcreteLocalSource
+import com.example.repoviewer.database.LocalSource
+import com.example.repoviewer.database.RepoDao
+import com.example.repoviewer.database.RepoDataBase
 import com.example.repoviewer.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -30,5 +36,21 @@ object AppModule {
             .create(ApiService::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun provideRepoDatabase(application: Application): RepoDataBase {
+        return Room.databaseBuilder(application, RepoDataBase::class.java, "Repo_database").build()
+    }
 
+    @Singleton
+    @Provides
+    fun provideMovieDao(movieDatabase: RepoDataBase): RepoDao {
+        return movieDatabase.repoDao()
+    }
+
+    @Provides
+    @Singleton
+    fun bindLocalSource(repoDao: RepoDao): LocalSource {
+        return ConcreteLocalSource(repoDao)
+    }
 }

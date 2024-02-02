@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Repositories")
+@Entity(tableName = "repositories_table")
 
 data class RepositoryEntity(
     @PrimaryKey
