@@ -3,8 +3,9 @@ package com.example.repoviewer.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.utils.Constants.REPO_TABLE
 
-@Entity(tableName = "repositories_table")
+@Entity(tableName = REPO_TABLE)
 
 data class RepositoryEntity(
     @PrimaryKey

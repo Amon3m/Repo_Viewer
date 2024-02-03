@@ -7,6 +7,8 @@ import com.example.repoviewer.database.LocalSource
 import com.example.repoviewer.database.RepoDao
 import com.example.repoviewer.database.RepoDataBase
 import com.example.repoviewer.network.ApiService
+import com.example.utils.Constants.BASE_URL
+import com.example.utils.Constants.REPO_DATABASE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-private const val BASE_URL= "https://api.github.com"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -47,7 +48,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRepoDatabase(application: Application): RepoDataBase {
-        return Room.databaseBuilder(application, RepoDataBase::class.java, "Repo_database").build()
+        return Room.databaseBuilder(application, RepoDataBase::class.java, REPO_DATABASE).build()
     }
 
     @Singleton
