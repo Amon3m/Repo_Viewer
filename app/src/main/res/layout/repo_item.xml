@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardBackgroundColor="@color/blue"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="20dp"
         app:cardElevation="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +93,7 @@
                 android:text="@string/show_stars"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@color/white"
+                android:textColor="@color/baseColor"
                 />
             <ProgressBar
                 android:id="@+id/progressBar2"
