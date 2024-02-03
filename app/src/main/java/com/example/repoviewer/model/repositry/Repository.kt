@@ -28,7 +28,6 @@ class Repository @Inject constructor(
     override suspend fun getRepoDetails(owner: String, repo: String): Flow<DetailsResponse> {
         return flowOf(remoteSource.getRepoDetails(owner, repo))
 
-        Log.e("heeeloss in getRepoDetails repo" ," ")
 
     }
 
@@ -38,7 +37,6 @@ class Repository @Inject constructor(
 
     override fun getAllRepos(): Flow<List<RepositoryEntity>> {
          val data= concreteLocalSource.getAllRepos()
-        Log.e("heeeloss in getAllRepos" ,"${data}")
         return data
 
     }
@@ -65,7 +63,6 @@ class Repository @Inject constructor(
         val id = it.id ?:0
         val stargazersCount=it.stargazersCount ?:0
        updateStarCount(id,stargazersCount)
-        Log.e("heeeloss in getStars repo" ," repoo")
 
     }
         return getAllRepos()

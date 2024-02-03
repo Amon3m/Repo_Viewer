@@ -69,7 +69,6 @@ class RepoDetailsFragment : Fragment() {
                 when (it) {
                     is ApiState.Success<*> -> {
                         val data = it.data as? DetailsResponse
-                        Log.e("heeeloss in frag", "${data}")
                         binding.progressBar3.visibility = View.INVISIBLE
                         bindView(data)
                     }
@@ -98,7 +97,6 @@ class RepoDetailsFragment : Fragment() {
         binding.createdAtTxt.text = data?.createdAt?.substringAfter("T")
         binding.visibilityTxt.text = data?.visibility
         binding.openIssuesTxt.text = data?.openIssues.toString()
-        Log.e("heellos", "${data?.owner?.avatarUrl}")
         Glide.with(requireContext())
             .load(data?.owner?.avatarUrl)
             .error(R.drawable.img_error)

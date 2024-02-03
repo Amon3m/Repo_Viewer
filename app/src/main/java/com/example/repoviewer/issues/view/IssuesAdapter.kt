@@ -11,16 +11,16 @@ import com.example.repoviewer.model.IssuesResponse
 
 
 class IssuesAdapter(val context: Context ) :
-    ListAdapter<IssuesResponse?, MoviesViewHolder>(MoviesDiffUtil()) {
+    ListAdapter<IssuesResponse?, IssuesViewHolder>(IssuesDiffUtil()) {
     lateinit var binding: IssuesItemBinding
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssuesViewHolder {
         val inflater: LayoutInflater =
             parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         binding = IssuesItemBinding.inflate(inflater, parent, false)
-        return MoviesViewHolder(binding)
+        return IssuesViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: IssuesViewHolder, position: Int) {
 
         val currentObject = getItem(position)
 
@@ -33,10 +33,10 @@ class IssuesAdapter(val context: Context ) :
 
 }
 
-class MoviesViewHolder(var binding: IssuesItemBinding) : RecyclerView.ViewHolder(binding.root)
+class IssuesViewHolder(var binding: IssuesItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 
-class MoviesDiffUtil : DiffUtil.ItemCallback<IssuesResponse?>() {
+class IssuesDiffUtil : DiffUtil.ItemCallback<IssuesResponse?>() {
     override fun areItemsTheSame(
         oldItem: IssuesResponse,
         newItem: IssuesResponse

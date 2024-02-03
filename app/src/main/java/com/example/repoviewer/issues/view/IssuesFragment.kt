@@ -56,7 +56,6 @@ class IssuesFragment : Fragment() {
                 when (it) {
                     is ApiState.Success<*> -> {
                         val data = it.data as? List<IssuesResponse>
-                        Log.e("heeeloss in frag", "${data}")
                         binding.progressBar4.visibility = View.INVISIBLE
                         issuesAdapter.submitList(data)
                     }

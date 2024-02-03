@@ -58,7 +58,6 @@ class RepoFragment : Fragment(), OnRepoClickListener {
                 when (it) {
                     is ApiState.Success<*> -> {
                         val data = it.data as? List<RepositoryEntity>
-                        Log.e("heeeloss in frag", "${data}")
                         binding.progressBar.visibility = View.INVISIBLE
                         repoAdapter.submitList(data)
                     }

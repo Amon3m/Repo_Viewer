@@ -26,7 +26,6 @@ class RepoViewModel @Inject constructor(private val repo: RepositoryInterface,
     fun getRepositories(context: Context) {
         if (isNetworkAvailable(context)){
         viewModelScope.launch(Dispatchers.IO) {
-            Log.e("netttwork","cashRepos")
 
             _repositories.emit(ApiState.Loading)
 
