@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="240dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools">
     <androidx.cardview.widget.CardView
@@ -70,6 +70,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/owner_txt"
                 tool:text="**Grit is no longer maintained. Check out libgit2/rugged.** Grit gives you object oriented read/write access to Git repositories via Ruby." />
 
+<!--            <Button-->
+<!--                android:id="@+id/star_show_btn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:text="show stars"-->
+<!--                android:textColor="@color/white"-->
+
+<!--                />-->
             <TextView
                 android:id="@+id/star_count_txt"
                 android:layout_width="wrap_content"
@@ -77,13 +90,11 @@
                 android:layout_margin="10dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:text="@string/show_stars"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="show star count"
                 android:textColor="@color/white"
-
                 />
-
             <ProgressBar
                 android:id="@+id/progressBar2"
                 android:visibility="invisible"

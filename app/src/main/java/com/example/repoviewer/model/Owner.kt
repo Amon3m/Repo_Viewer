@@ -1,5 +1,7 @@
 package com.example.repoviewer.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Owner(
     val gistsUrl: String? = null,
     val reposUrl: String? = null,
@@ -11,6 +13,8 @@ data class Owner(
     val url: String? = null,
     val subscriptionsUrl: String? = null,
     val receivedEventsUrl: String? = null,
+
+    @field:SerializedName("avatar_url")
     val avatarUrl: String? = null,
     val eventsUrl: String? = null,
     val htmlUrl: String? = null,

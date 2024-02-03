@@ -1,9 +1,13 @@
 package com.example.repoviewer.repo.viewmodel
 
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.repoviewer.model.repositry.RepositoryInterface
 import com.example.repoviewer.network.ApiState
+import com.example.utils.NetworkUtils
+import com.example.utils.NetworkUtils.isNetworkAvailable
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,40 +17,47 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RepoViewModel @Inject constructor(private val repo: RepositoryInterface) :ViewModel(){
+class RepoViewModel @Inject constructor(private val repo: RepositoryInterface,
+    ) :ViewModel(){
     private val _repositories = MutableStateFlow<ApiState>(ApiState.Loading)
     val repositories: StateFlow<ApiState>
         get() = _repositories
 
-    private val _details = MutableStateFlow<ApiState>(ApiState.Loading)
-    val details: StateFlow<ApiState>
-        get() = _details
-
-
-    init {
-        getRepositories()
-    }
-
-    fun getRepositories() {
+    fun getRepositories(context: Context) {
+        if (isNetworkAvailable(context)){
         viewModelScope.launch(Dispatchers.IO) {
+            Log.e("netttwork","cashRepos")
+
             _repositories.emit(ApiState.Loading)
 
-            repo.getRepositories().catch { e ->
+            repo.cashRepos().catch { e ->
                 _repositories.emit(ApiState.Failure(e.message ?: ""))
             }.collect {
                 _repositories.emit(ApiState.Success(it))
             }
 
+        }}
+        else{
+            viewModelScope.launch(Dispatchers.IO) {
+                _repositories.emit(ApiState.Loading)
+
+                repo.getAllRepos().catch { e ->
+                    _repositories.emit(ApiState.Failure(e.message ?: ""))
+                }.collect {
+                    _repositories.emit(ApiState.Success(it))
+                }
+
+            }
         }
     }
-    fun getDetails(owner: String, repoName: String) {
+    fun getStars(owner: String, repoName: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            _details.emit(ApiState.Loading)
+            _repositories.emit(ApiState.Loading)
 
-            repo.getRepoDetails(owner,repoName).catch { e ->
-                _details.emit(ApiState.Failure(e.message ?: ""))
+            repo.getStars(owner,repoName).catch { e ->
+                _repositories.emit(ApiState.Failure(e.message ?: ""))
             }.collect {
-                _details.emit(ApiState.Success(it))
+                _repositories.emit(ApiState.Success(it))
             }
 
         }

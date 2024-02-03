@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.executor.GlideExecutor.UncaughtThrowableStrategy.LOG
+
 import com.example.repoviewer.databinding.RepoItemBinding
-import com.example.repoviewer.model.RepositoriesResponse
+import com.example.repoviewer.model.RepositoryEntity
 
 class RepoAdapter(val context: Context, private val listener: OnRepoClickListener) :
-    ListAdapter<RepositoriesResponse?, RepoViewHolder>(RepoDiffUtil()) {
+    ListAdapter<RepositoryEntity?, RepoViewHolder>(RepoDiffUtil()) {
     lateinit var binding: RepoItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         val inflater: LayoutInflater =
@@ -27,14 +26,18 @@ class RepoAdapter(val context: Context, private val listener: OnRepoClickListene
         val currentObject = getItem(position)
 
         holder.binding.repoNameTxt.text=currentObject?.name  ?:""
-        holder.binding.ownerTxt.text=currentObject?.owner?.login ?:""
+        holder.binding.ownerTxt.text=currentObject?.owner ?:""
         holder.binding.desTxt.text=currentObject?.description ?:""
+
+
+        holder.binding.starCountTxt.text= currentObject?.starCount ?:"show stars"
+
         holder.binding.root.setOnClickListener{
             listener.onRepoClick(currentObject)
         }
 
         holder.binding.starCountTxt.setOnClickListener {
-            listener.onShowStars(currentObject,position)
+            listener.onShowStars(currentObject)
         }
 
     }
@@ -46,17 +49,17 @@ class RepoAdapter(val context: Context, private val listener: OnRepoClickListene
 class RepoViewHolder(var binding: RepoItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 
-class RepoDiffUtil : DiffUtil.ItemCallback<RepositoriesResponse?>() {
+class RepoDiffUtil : DiffUtil.ItemCallback<RepositoryEntity?>() {
     override fun areItemsTheSame(
-        oldItem: RepositoriesResponse,
-        newItem: RepositoriesResponse
+        oldItem: RepositoryEntity,
+        newItem: RepositoryEntity
     ): Boolean {
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItem: RepositoriesResponse,
-        newItem: RepositoriesResponse
+        oldItem: RepositoryEntity,
+        newItem: RepositoryEntity
     ): Boolean {
         return oldItem == newItem
     }

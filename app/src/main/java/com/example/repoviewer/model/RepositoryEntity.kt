@@ -17,5 +17,5 @@ data class RepositoryEntity(
     @ColumnInfo
     val description: String?= null,
     @ColumnInfo
-    val starCount: Int? = null
+    val starCount: String? = null
 )

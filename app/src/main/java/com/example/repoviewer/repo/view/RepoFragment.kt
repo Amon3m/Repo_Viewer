@@ -9,13 +9,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.repoviewer.databinding.FragmentRepoBinding
 import com.example.repoviewer.model.DetailsResponse
 import com.example.repoviewer.model.RepositoriesResponse
+import com.example.repoviewer.model.RepositoryEntity
 import com.example.repoviewer.network.ApiState
 import com.example.repoviewer.repo.viewmodel.RepoViewModel
+import com.example.utils.NetworkUtils
+import com.example.utils.NetworkUtils.isNetworkAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -26,7 +30,11 @@ class RepoFragment : Fragment(), OnRepoClickListener {
     private lateinit var binding: FragmentRepoBinding
     lateinit var repoAdapter: RepoAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getRepositories(requireContext())
 
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,8 +57,8 @@ class RepoFragment : Fragment(), OnRepoClickListener {
             viewModel.repositories.collect {
                 when (it) {
                     is ApiState.Success<*> -> {
-                        val data = it.data as? List<RepositoriesResponse>
-
+                        val data = it.data as? List<RepositoryEntity>
+                        Log.e("heeeloss in frag", "${data}")
                         binding.progressBar.visibility = View.INVISIBLE
                         repoAdapter.submitList(data)
                     }
@@ -68,14 +76,34 @@ class RepoFragment : Fragment(), OnRepoClickListener {
                 }
             }
         }
-    }
 
-    override fun onRepoClick(repositoriesResponse: RepositoriesResponse?) {
 
     }
 
-    override fun onShowStars(repositoriesResponse: RepositoriesResponse?, position: Int) {
+    override fun onRepoClick(repositoryEntity: RepositoryEntity?) {
+        if (isNetworkAvailable(requireContext())) {
+            val owner = repositoryEntity?.owner ?: ""
+            val name = repositoryEntity?.name ?: ""
+            val action = RepoFragmentDirections.actionRepoFragmentToRepoDetailsFragment(
+                owner, name
+            )
+            Navigation.findNavController(requireView()).navigate(action)
+        }
+        else{
+            Toast.makeText(requireContext(), "No network connection", Toast.LENGTH_SHORT).show()
 
+        }
+    }
+
+    override fun onShowStars(repositoryEntity: RepositoryEntity?) {
+        if (isNetworkAvailable(requireContext())) {
+
+            val owner = repositoryEntity?.owner ?: ""
+            val name = repositoryEntity?.name ?: ""
+            viewModel.getStars(owner, name)}
+        else{
+                Toast.makeText(requireContext(), "No network connection", Toast.LENGTH_SHORT).show()
+            }
     }
 
 

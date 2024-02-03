@@ -9,15 +9,36 @@
         android:id="@+id/repoFragment"
         android:name="com.example.repoviewer.repo.view.RepoFragment"
         android:label="fragment_repo"
-        tools:layout="@layout/fragment_repo" />
+        tools:layout="@layout/fragment_repo" >
+        <action
+            android:id="@+id/action_repoFragment_to_repoDetailsFragment"
+            app:destination="@id/repoDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/issuesFragment"
         android:name="com.example.repoviewer.issues.view.IssuesFragment"
         android:label="fragment_issues"
-        tools:layout="@layout/fragment_issues" />
+        tools:layout="@layout/fragment_issues" >
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/repoDetailsFragment"
         android:name="com.example.repoviewer.repodetails.view.RepoDetailsFragment"
         android:label="fragment_repo_details"
-        tools:layout="@layout/fragment_repo_details" />
+        tools:layout="@layout/fragment_repo_details" >
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_repoDetailsFragment_to_issuesFragment"
+            app:destination="@id/issuesFragment" />
+    </fragment>
 </navigation>
