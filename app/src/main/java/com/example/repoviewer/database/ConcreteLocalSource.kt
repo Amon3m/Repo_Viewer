@@ -17,5 +17,9 @@ class ConcreteLocalSource  @Inject constructor (private val dao: RepoDao) :Local
         dao.updateStarCount(repoId,newStarCount)
     }
 
+    override fun searchRepos(query: String): Flow<List<RepositoryEntity>> {
+        return dao.searchRepos("%$query%")
+    }
+
 
 }

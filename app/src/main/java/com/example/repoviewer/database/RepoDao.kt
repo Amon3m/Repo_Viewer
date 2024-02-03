@@ -16,4 +16,7 @@ interface RepoDao {
 
     @Query("UPDATE repositories_table SET starCount = :newStarCount WHERE id = :repoId")
     suspend fun updateStarCount(repoId: Int, newStarCount: Int)
+
+    @Query("SELECT * FROM repositories_table WHERE name LIKE :query OR owner LIKE :query")
+    fun searchRepos(query: String): Flow<List<RepositoryEntity>>
 }

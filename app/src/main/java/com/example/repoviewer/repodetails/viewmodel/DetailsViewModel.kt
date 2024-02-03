@@ -32,4 +32,5 @@ class DetailsViewModel @Inject constructor(private val repo: RepositoryInterface
 
         }
     }
+
 }

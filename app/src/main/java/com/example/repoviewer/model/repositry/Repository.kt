@@ -35,6 +35,10 @@ class Repository @Inject constructor(
         return flowOf(remoteSource.getRepoIssues(owner, repo))
     }
 
+    override fun searchRepos(query: String): Flow<List<RepositoryEntity>> {
+        return concreteLocalSource.searchRepos(query)
+    }
+
     override fun getAllRepos(): Flow<List<RepositoryEntity>> {
          val data= concreteLocalSource.getAllRepos()
         return data

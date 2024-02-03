@@ -12,6 +12,7 @@ interface RepositoryInterface  {
      suspend fun getRepoDetails(owner: String, repo: String): Flow<DetailsResponse>
 
      suspend fun getRepoIssues(owner: String, repo: String): Flow<List<IssuesResponse>>
+     fun searchRepos(query: String): Flow<List<RepositoryEntity>>
 
      fun getAllRepos(): Flow<List<RepositoryEntity>>
      suspend fun insertAll(repos: List<RepositoryEntity>)

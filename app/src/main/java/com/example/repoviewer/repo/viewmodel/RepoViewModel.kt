@@ -62,4 +62,16 @@ class RepoViewModel @Inject constructor(private val repo: RepositoryInterface,
         }
     }
 
+    fun searchRepos(query:String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _repositories.emit(ApiState.Loading)
+            repo.searchRepos(query).catch { e ->
+                _repositories.emit(ApiState.Failure(e.message ?: ""))
+            }.collect {
+                _repositories.emit(ApiState.Success(it))
+            }
+
+        }
+    }
+
 }
